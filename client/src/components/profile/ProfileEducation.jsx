@@ -8,7 +8,7 @@ export const ProfileEducation = ({
 }) => {
   return (
     <div>
-      <h3 class='text-dark'>{school}</h3>
+      <h3 className='text-dark'>{school}</h3>
       <p>
         {<Moment format='MM YYYY'>{from}</Moment>} -{' '}
         {current ? 'Now' : to && <Moment format='MM YYYY'>{to}</Moment>}
@@ -30,8 +30,9 @@ export const ProfileEducation = ({
 };
 
 const mapStateToProps = (state) => ({});
+
 ProfileEducation.propTypes = {
-  education: PropTypes.array.isRequired,
+  education: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(ProfileEducation);
