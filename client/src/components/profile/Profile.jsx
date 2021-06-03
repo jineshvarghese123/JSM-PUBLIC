@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
@@ -18,15 +18,24 @@ export const Profile = ({
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById]);
+
+  let history = useHistory();
+  const goToPreviousPath = () => {
+    history.goBack();
+  };
   return (
     <Fragment>
       {profile === null || loading ? (
         <Spinner></Spinner>
       ) : (
         <Fragment>
-          <Link to='/profiles' className='btn btn-light'>
+          {/* <Link to='/profiles' className='btn btn-light'>
             Back to Profile
-          </Link>
+          </Link> */}
+          <button onClick={goToPreviousPath} className='btn btn-light'>
+            {' '}
+            Back
+          </button>
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
@@ -37,23 +46,26 @@ export const Profile = ({
           <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
-            <div class='profile-exp bg-white p-2'>
-              <h2 class='text-primary'>Experience</h2>
+            <div className='profile-exp bg-white p-2'>
+              <h2 className='text-primary'>Experience</h2>
+
               {profile.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map((exp) => (
-                    <ProfileExperience
-                      key={exp._id}
-                      experience={exp}
-                    ></ProfileExperience>
-                  ))}
+                  <div className='posts'>
+                    {profile.experience.map((exp) => (
+                      <ProfileExperience
+                        key={exp._id}
+                        experience={exp}
+                      ></ProfileExperience>
+                    ))}
+                  </div>
                 </Fragment>
               ) : (
                 <h4>No Experience Credentials</h4>
               )}
             </div>
-            <div class='profile-edu bg-white p-2'>
-              <h2 class='text-primary'>Education</h2>
+            <div className='profile-edu bg-white p-2'>
+              <h2 className='text-primary'>Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
                   {profile.education.map((edu) => (

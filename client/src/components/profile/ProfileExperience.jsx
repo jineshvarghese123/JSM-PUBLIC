@@ -8,10 +8,14 @@ export const ProfileExperience = ({
 }) => {
   return (
     <div>
-      <h3 class='text-dark'>{company}</h3>
+      <h3 className='text-dark'>{company}</h3>
       <p>
         {<Moment format='MM YYYY'>{from}</Moment>} -{' '}
         {current ? 'Now' : to && <Moment format='MM YYYY'>{to}</Moment>}
+      </p>
+      <p>
+        <strong>Location: </strong>
+        {location}
       </p>
       <p>
         <strong>Position: </strong>
@@ -27,7 +31,7 @@ export const ProfileExperience = ({
 
 const mapStateToProps = (state) => ({});
 ProfileExperience.propTypes = {
-  experience: PropTypes.array.isRequired,
+  experience: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(ProfileExperience);
