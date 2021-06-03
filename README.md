@@ -1,5 +1,5 @@
 # JSM
-JSM
+JSM - For my reference
 
 
 For skelton Creation
@@ -18,3 +18,9 @@ Concurrently- it will help us to run react server and express in one command
 	1.after npx create-react-app <<project>>
 	2. Npm I axios react-router-dom redux react-redux redux-thunk redux-devtools-extension moment react-moment 
 
+
+
+For thos who are using 
+
+jsm > npm install 
+jsm > client > npm install
